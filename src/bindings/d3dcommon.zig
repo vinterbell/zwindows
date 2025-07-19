@@ -88,11 +88,20 @@ pub const IID_IBlob = GUID.parse("{8BA5FB08-5195-40e2-AC58-0D989C3A0102}");
 pub const IBlob = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetBufferPointer = _Methods.GetBufferPointer;
+    pub const GetBufferSize = _Methods.GetBufferSize;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetBufferPointer(self: *T) *anyopaque {
                 return @as(*const IBlob.VTable, @ptrCast(self.__v)).GetBufferPointer(@as(*IBlob, @ptrCast(self)));

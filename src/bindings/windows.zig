@@ -2,80 +2,94 @@
 
 const std = @import("std");
 
-pub usingnamespace std.os.windows;
+pub const WINAPI = std.builtin.CallingConvention.winapi;
+pub const S_OK = std.os.windows.S_OK;
+pub const S_FALSE = std.os.windows.S_FALSE;
+pub const E_NOTIMPL = std.os.windows.E_NOTIMPL;
+pub const E_NOINTERFACE = std.os.windows.E_NOINTERFACE;
+pub const E_POINTER = std.os.windows.E_POINTER;
+pub const E_ABORT = std.os.windows.E_ABORT;
+pub const E_FAIL = std.os.windows.E_FAIL;
+pub const E_UNEXPECTED = std.os.windows.E_UNEXPECTED;
+pub const E_ACCESSDENIED = std.os.windows.E_ACCESSDENIED;
+pub const E_HANDLE = std.os.windows.E_HANDLE;
+pub const E_OUTOFMEMORY = std.os.windows.E_OUTOFMEMORY;
+pub const E_INVALIDARG = std.os.windows.E_INVALIDARG;
+pub const GENERIC_READ = std.os.windows.GENERIC_READ;
+pub const GENERIC_WRITE = std.os.windows.GENERIC_WRITE;
+pub const GENERIC_EXECUTE = std.os.windows.GENERIC_EXECUTE;
+pub const GENERIC_ALL = std.os.windows.GENERIC_ALL;
+pub const EVENT_ALL_ACCESS = std.os.windows.EVENT_ALL_ACCESS;
+pub const TRUE = BOOL.TRUE;
+pub const FALSE = BOOL.FALSE;
+pub const BOOL = packed struct(std.os.windows.BOOL) {
+    value: std.os.windows.BOOL = 0,
+    pub const TRUE: BOOL = .{ .value = std.os.windows.TRUE };
+    pub const FALSE: BOOL = .{ .value = std.os.windows.FALSE };
 
-const WINAPI = std.os.windows.WINAPI;
-const S_OK = std.os.windows.S_OK;
-const S_FALSE = std.os.windows.S_FALSE;
-const E_NOTIMPL = std.os.windows.E_NOTIMPL;
-const E_NOINTERFACE = std.os.windows.E_NOINTERFACE;
-const E_POINTER = std.os.windows.E_POINTER;
-const E_ABORT = std.os.windows.E_ABORT;
-const E_FAIL = std.os.windows.E_FAIL;
-const E_UNEXPECTED = std.os.windows.E_UNEXPECTED;
-const E_ACCESSDENIED = std.os.windows.E_ACCESSDENIED;
-const E_HANDLE = std.os.windows.E_HANDLE;
-const E_OUTOFMEMORY = std.os.windows.E_OUTOFMEMORY;
-const E_INVALIDARG = std.os.windows.E_INVALIDARG;
-const GENERIC_READ = std.os.windows.GENERIC_READ;
-const GENERIC_WRITE = std.os.windows.GENERIC_WRITE;
-const GENERIC_EXECUTE = std.os.windows.GENERIC_EXECUTE;
-const GENERIC_ALL = std.os.windows.GENERIC_ALL;
-const EVENT_ALL_ACCESS = std.os.windows.EVENT_ALL_ACCESS;
-const TRUE = std.os.windows.TRUE;
-const FALSE = std.os.windows.FALSE;
-const BOOL = std.os.windows.BOOL;
-const BOOLEAN = std.os.windows.BOOLEAN;
-const BYTE = std.os.windows.BYTE;
-const CHAR = std.os.windows.CHAR;
-const UCHAR = std.os.windows.UCHAR;
-const WCHAR = std.os.windows.WCHAR;
-const FLOAT = std.os.windows.FLOAT;
-const HCRYPTPROV = std.os.windows.HCRYPTPROV;
-const ATOM = std.os.windows.ATOM;
-const WPARAM = std.os.windows.WPARAM;
-const LPARAM = std.os.windows.LPARAM;
-const LRESULT = std.os.windows.LRESULT;
-const HRESULT = std.os.windows.HRESULT;
-const HBRUSH = std.os.windows.HBRUSH;
-const HCURSOR = std.os.windows.HCURSOR;
-const HICON = std.os.windows.HICON;
-const HINSTANCE = std.os.windows.HINSTANCE;
-const HMENU = std.os.windows.HMENU;
-const HMODULE = std.os.windows.HMODULE;
-const HWND = std.os.windows.HWND;
-const HDC = std.os.windows.HDC;
-const HGLRC = std.os.windows.HGLRC;
-const FARPROC = std.os.windows.FARPROC;
-const INT = std.os.windows.INT;
-const SIZE_T = std.os.windows.SIZE_T;
-const UINT = std.os.windows.UINT;
-const USHORT = std.os.windows.USHORT;
-const SHORT = std.os.windows.SHORT;
-const ULONG = std.os.windows.ULONG;
-const LONG = std.os.windows.LONG;
-const WORD = std.os.windows.WORD;
-const DWORD = std.os.windows.DWORD;
-const ULONGLONG = std.os.windows.ULONGLONG;
-const LONGLONG = std.os.windows.LONGLONG;
-const LARGE_INTEGER = std.os.windows.LARGE_INTEGER;
-const ULARGE_INTEGER = std.os.windows.ULARGE_INTEGER;
-const LPCSTR = std.os.windows.LPCSTR;
-const LPCVOID = std.os.windows.LPCVOID;
-const LPSTR = std.os.windows.LPSTR;
-const LPVOID = std.os.windows.LPVOID;
-const LPWSTR = std.os.windows.LPWSTR;
-const LPCWSTR = std.os.windows.LPCSWTR;
-const PVOID = std.os.windows.PVOID;
-const PWSTR = std.os.windows.PWSTR;
-const PCWSTR = std.os.windows.PCWSTR;
-const HANDLE = std.os.windows.HANDLE;
-const GUID = std.os.windows.GUID;
-const NTSTATUS = std.os.windows.NTSTATUS;
-const CRITICAL_SECTION = std.os.windows.CRITICAL_SECTION;
-const SECURITY_ATTRIBUTES = std.os.windows.SECURITY_ATTRIBUTES;
-const RECT = std.os.windows.RECT;
-const POINT = std.os.windows.POINT;
+    pub inline fn toBool(self: BOOL) bool {
+        return self.value == std.os.windows.TRUE;
+    }
+};
+pub const BOOLEAN = packed struct(std.os.windows.BOOLEAN) {
+    value: std.os.windows.BOOLEAN = 0,
+    pub const TRUE: BOOLEAN = .{ .value = std.os.windows.TRUE };
+    pub const FALSE: BOOLEAN = .{ .value = std.os.windows.FALSE };
+
+    pub inline fn toBool(self: BOOLEAN) bool {
+        return self.value == std.os.windows.TRUE;
+    }
+};
+pub const BYTE = std.os.windows.BYTE;
+pub const CHAR = std.os.windows.CHAR;
+pub const UCHAR = std.os.windows.UCHAR;
+pub const WCHAR = std.os.windows.WCHAR;
+pub const FLOAT = std.os.windows.FLOAT;
+pub const HCRYPTPROV = std.os.windows.HCRYPTPROV;
+pub const ATOM = std.os.windows.ATOM;
+pub const WPARAM = std.os.windows.WPARAM;
+pub const LPARAM = std.os.windows.LPARAM;
+pub const LRESULT = std.os.windows.LRESULT;
+pub const HRESULT = std.os.windows.HRESULT;
+pub const HBRUSH = std.os.windows.HBRUSH;
+pub const HCURSOR = std.os.windows.HCURSOR;
+pub const HICON = std.os.windows.HICON;
+pub const HINSTANCE = std.os.windows.HINSTANCE;
+pub const HMENU = std.os.windows.HMENU;
+pub const HMODULE = std.os.windows.HMODULE;
+pub const HWND = std.os.windows.HWND;
+pub const HDC = std.os.windows.HDC;
+pub const HGLRC = std.os.windows.HGLRC;
+pub const FARPROC = std.os.windows.FARPROC;
+pub const INT = std.os.windows.INT;
+pub const SIZE_T = std.os.windows.SIZE_T;
+pub const UINT = std.os.windows.UINT;
+pub const USHORT = std.os.windows.USHORT;
+pub const SHORT = std.os.windows.SHORT;
+pub const ULONG = std.os.windows.ULONG;
+pub const LONG = std.os.windows.LONG;
+pub const WORD = std.os.windows.WORD;
+pub const DWORD = std.os.windows.DWORD;
+pub const ULONGLONG = std.os.windows.ULONGLONG;
+pub const LONGLONG = std.os.windows.LONGLONG;
+pub const LARGE_INTEGER = std.os.windows.LARGE_INTEGER;
+pub const ULARGE_INTEGER = std.os.windows.ULARGE_INTEGER;
+pub const LPCSTR = std.os.windows.LPCSTR;
+pub const LPCVOID = std.os.windows.LPCVOID;
+pub const LPSTR = std.os.windows.LPSTR;
+pub const LPVOID = std.os.windows.LPVOID;
+pub const LPWSTR = std.os.windows.LPWSTR;
+pub const LPCWSTR = std.os.windows.LPCWSTR;
+pub const PVOID = std.os.windows.PVOID;
+pub const PWSTR = std.os.windows.PWSTR;
+pub const PCWSTR = std.os.windows.PCWSTR;
+pub const HANDLE = std.os.windows.HANDLE;
+pub const GUID = std.os.windows.GUID;
+pub const NTSTATUS = std.os.windows.NTSTATUS;
+pub const CRITICAL_SECTION = std.os.windows.CRITICAL_SECTION;
+pub const SECURITY_ATTRIBUTES = std.os.windows.SECURITY_ATTRIBUTES;
+pub const RECT = std.os.windows.RECT;
+pub const POINT = std.os.windows.POINT;
 
 pub const E_FILE_NOT_FOUND = @as(HRESULT, @bitCast(@as(c_ulong, 0x80070002)));
 
@@ -444,7 +458,10 @@ pub const IID_IUnknown = GUID.parse("{00000000-0000-0000-C000-000000000046}");
 pub const IUnknown = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {

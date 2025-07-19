@@ -42,11 +42,17 @@ pub const BitmapPaletteType = enum(UINT) {
 pub const IPalette = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
         };
     }
 
@@ -68,11 +74,19 @@ pub const IPalette = extern struct {
 pub const IBitmapDecoder = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetFrame = _Methods.GetFrame;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetFrame(self: *T, index: UINT, frame: ?*?*IBitmapFrameDecode) HRESULT {
                 return @as(*const IBitmapDecoder.VTable, @ptrCast(self.__v))
@@ -100,11 +114,21 @@ pub const IBitmapDecoder = extern struct {
 pub const IBitmapSource = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetSize = _Methods.GetSize;
+    pub const GetPixelFormat = _Methods.GetPixelFormat;
+    pub const CopyPixels = _Methods.CopyPixels;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetSize(self: *T, width: *UINT, height: *UINT) HRESULT {
                 return @as(*const IBitmapSource.VTable, @ptrCast(self.__v))
@@ -140,11 +164,23 @@ pub const IBitmapSource = extern struct {
 pub const IBitmapFrameDecode = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetSize = _Methods.GetSize;
+    pub const GetPixelFormat = _Methods.GetPixelFormat;
+    pub const CopyPixels = _Methods.CopyPixels;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBitmapSource.Methods(T);
+            const IBitmapSource_Methods = IBitmapSource.Methods(T);
+            pub const QueryInterface = IBitmapSource_Methods.QueryInterface;
+            pub const AddRef = IBitmapSource_Methods.AddRef;
+            pub const Release = IBitmapSource_Methods.Release;
+            pub const GetSize = IBitmapSource_Methods.GetSize;
+            pub const GetPixelFormat = IBitmapSource_Methods.GetPixelFormat;
+            pub const CopyPixels = IBitmapSource_Methods.CopyPixels;
         };
     }
 
@@ -159,11 +195,23 @@ pub const IBitmapFrameDecode = extern struct {
 pub const IBitmap = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetSize = _Methods.GetSize;
+    pub const GetPixelFormat = _Methods.GetPixelFormat;
+    pub const CopyPixels = _Methods.CopyPixels;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBitmapSource.Methods(T);
+            const IBitmapSource_Methods = IBitmapSource.Methods(T);
+            pub const QueryInterface = IBitmapSource_Methods.QueryInterface;
+            pub const AddRef = IBitmapSource_Methods.AddRef;
+            pub const Release = IBitmapSource_Methods.Release;
+            pub const GetSize = IBitmapSource_Methods.GetSize;
+            pub const GetPixelFormat = IBitmapSource_Methods.GetPixelFormat;
+            pub const CopyPixels = IBitmapSource_Methods.CopyPixels;
         };
     }
 
@@ -189,11 +237,25 @@ pub const BitmapDitherType = enum(UINT) {
 pub const IFormatConverter = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetSize = _Methods.GetSize;
+    pub const GetPixelFormat = _Methods.GetPixelFormat;
+    pub const CopyPixels = _Methods.CopyPixels;
+
+    pub const Initialize = _Methods.Initialize;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBitmapSource.Methods(T);
+            const IBitmapSource_Methods = IBitmapSource.Methods(T);
+            pub const QueryInterface = IBitmapSource_Methods.QueryInterface;
+            pub const AddRef = IBitmapSource_Methods.AddRef;
+            pub const Release = IBitmapSource_Methods.Release;
+            pub const GetSize = IBitmapSource_Methods.GetSize;
+            pub const GetPixelFormat = IBitmapSource_Methods.GetPixelFormat;
+            pub const CopyPixels = IBitmapSource_Methods.CopyPixels;
 
             pub inline fn Initialize(
                 self: *T,
@@ -235,11 +297,20 @@ pub const IFormatConverter = extern struct {
 pub const IImagingFactory = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateDecoderFromFilename = _Methods.CreateDecoderFromFilename;
+    pub const CreateFormatConverter = _Methods.CreateFormatConverter;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn CreateDecoderFromFilename(
                 self: *T,

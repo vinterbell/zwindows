@@ -30,11 +30,19 @@ pub const ERole = enum(UINT) {
 pub const IMMDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const Activate = _Methods.Activate;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn Activate(
                 self: *T,
@@ -67,11 +75,19 @@ pub const IMMDevice = extern struct {
 pub const IMMDeviceEnumerator = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetDefaultAudioEndpoint = _Methods.GetDefaultAudioEndpoint;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetDefaultAudioEndpoint(
                 self: *T,
@@ -149,11 +165,30 @@ pub const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR: UINT = 0x4;
 pub const IAudioClient = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const Initialize = _Methods.Initialize;
+    pub const GetBufferSize = _Methods.GetBufferSize;
+    pub const GetStreamLatency = _Methods.GetStreamLatency;
+    pub const GetCurrentPadding = _Methods.GetCurrentPadding;
+    pub const IsFormatSupported = _Methods.IsFormatSupported;
+    pub const GetMixFormat = _Methods.GetMixFormat;
+    pub const GetDevicePeriod = _Methods.GetDevicePeriod;
+    pub const Start = _Methods.Start;
+    pub const Stop = _Methods.Stop;
+    pub const Reset = _Methods.Reset;
+    pub const SetEventHandle = _Methods.SetEventHandle;
+    pub const GetService = _Methods.GetService;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn Initialize(
                 self: *T,
@@ -256,11 +291,41 @@ pub const IAudioClient = extern struct {
 pub const IAudioClient2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const Initialize = _Methods.Initialize;
+    pub const GetBufferSize = _Methods.GetBufferSize;
+    pub const GetStreamLatency = _Methods.GetStreamLatency;
+    pub const GetCurrentPadding = _Methods.GetCurrentPadding;
+    pub const IsFormatSupported = _Methods.IsFormatSupported;
+    pub const GetMixFormat = _Methods.GetMixFormat;
+    pub const GetDevicePeriod = _Methods.GetDevicePeriod;
+    pub const Start = _Methods.Start;
+    pub const Stop = _Methods.Stop;
+    pub const Reset = _Methods.Reset;
+    pub const SetEventHandle = _Methods.SetEventHandle;
+    pub const GetService = _Methods.GetService;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IAudioClient.Methods(T);
+            const IAudioClient_Methods = IAudioClient.Methods(T);
+            pub const QueryInterface = IAudioClient_Methods.QueryInterface;
+            pub const AddRef = IAudioClient_Methods.AddRef;
+            pub const Release = IAudioClient_Methods.Release;
+            pub const Initialize = IAudioClient_Methods.Initialize;
+            pub const GetBufferSize = IAudioClient_Methods.GetBufferSize;
+            pub const GetStreamLatency = IAudioClient_Methods.GetStreamLatency;
+            pub const GetCurrentPadding = IAudioClient_Methods.GetCurrentPadding;
+            pub const IsFormatSupported = IAudioClient_Methods.IsFormatSupported;
+            pub const GetMixFormat = IAudioClient_Methods.GetMixFormat;
+            pub const GetDevicePeriod = IAudioClient_Methods.GetDevicePeriod;
+            pub const Start = IAudioClient_Methods.Start;
+            pub const Stop = IAudioClient_Methods.Stop;
+            pub const Reset = IAudioClient_Methods.Reset;
+            pub const SetEventHandle = IAudioClient_Methods.SetEventHandle;
+            pub const GetService = IAudioClient_Methods.GetService;
         };
     }
 
@@ -276,11 +341,41 @@ pub const IAudioClient2 = extern struct {
 pub const IAudioClient3 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const Initialize = _Methods.Initialize;
+    pub const GetBufferSize = _Methods.GetBufferSize;
+    pub const GetStreamLatency = _Methods.GetStreamLatency;
+    pub const GetCurrentPadding = _Methods.GetCurrentPadding;
+    pub const IsFormatSupported = _Methods.IsFormatSupported;
+    pub const GetMixFormat = _Methods.GetMixFormat;
+    pub const GetDevicePeriod = _Methods.GetDevicePeriod;
+    pub const Start = _Methods.Start;
+    pub const Stop = _Methods.Stop;
+    pub const Reset = _Methods.Reset;
+    pub const SetEventHandle = _Methods.SetEventHandle;
+    pub const GetService = _Methods.GetService;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IAudioClient2.Methods(T);
+            const IAudioClient2_Methods = IAudioClient2.Methods(T);
+            pub const QueryInterface = IAudioClient2_Methods.QueryInterface;
+            pub const AddRef = IAudioClient2_Methods.AddRef;
+            pub const Release = IAudioClient2_Methods.Release;
+            pub const Initialize = IAudioClient2_Methods.Initialize;
+            pub const GetBufferSize = IAudioClient2_Methods.GetBufferSize;
+            pub const GetStreamLatency = IAudioClient2_Methods.GetStreamLatency;
+            pub const GetCurrentPadding = IAudioClient2_Methods.GetCurrentPadding;
+            pub const IsFormatSupported = IAudioClient2_Methods.IsFormatSupported;
+            pub const GetMixFormat = IAudioClient2_Methods.GetMixFormat;
+            pub const GetDevicePeriod = IAudioClient2_Methods.GetDevicePeriod;
+            pub const Start = IAudioClient2_Methods.Start;
+            pub const Stop = IAudioClient2_Methods.Stop;
+            pub const Reset = IAudioClient2_Methods.Reset;
+            pub const SetEventHandle = IAudioClient2_Methods.SetEventHandle;
+            pub const GetService = IAudioClient2_Methods.GetService;
         };
     }
 
@@ -295,11 +390,20 @@ pub const IAudioClient3 = extern struct {
 pub const IAudioRenderClient = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetBuffer = _Methods.GetBuffer;
+    pub const ReleaseBuffer = _Methods.ReleaseBuffer;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetBuffer(self: *T, num_frames_requested: UINT32, data: ?*?[*]BYTE) HRESULT {
                 return @as(*const IAudioRenderClient.VTable, @ptrCast(self.__v))

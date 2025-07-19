@@ -210,11 +210,17 @@ pub const RADIAL_GRADIENT_BRUSH_PROPERTIES = extern struct {
 pub const IResource = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
         };
     }
 
@@ -227,11 +233,17 @@ pub const IResource = extern struct {
 pub const IImage = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -243,11 +255,17 @@ pub const IImage = extern struct {
 pub const IBitmap = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IImage.Methods(T);
+            const IImage_Methods = IImage.Methods(T);
+            pub const QueryInterface = IImage_Methods.QueryInterface;
+            pub const AddRef = IImage_Methods.AddRef;
+            pub const Release = IImage_Methods.Release;
         };
     }
 
@@ -282,11 +300,17 @@ pub const GRADIENT_STOP = extern struct {
 pub const IGradientStopCollection = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -302,11 +326,17 @@ pub const IGradientStopCollection = extern struct {
 pub const IBrush = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -322,11 +352,20 @@ pub const IBrush = extern struct {
 pub const ISolidColorBrush = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const SetColor = _Methods.SetColor;
+    pub const GetColor = _Methods.GetColor;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBrush.Methods(T);
+            const IBrush_Methods = IBrush.Methods(T);
+            pub const QueryInterface = IBrush_Methods.QueryInterface;
+            pub const AddRef = IBrush_Methods.AddRef;
+            pub const Release = IBrush_Methods.Release;
 
             pub inline fn SetColor(self: *T, color: *const COLOR_F) void {
                 @as(*const ISolidColorBrush.VTable, @ptrCast(self.__v))
@@ -351,11 +390,17 @@ pub const ISolidColorBrush = extern struct {
 pub const IRadialGradientBrush = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBrush.Methods(T);
+            const IBrush_Methods = IBrush.Methods(T);
+            pub const QueryInterface = IBrush_Methods.QueryInterface;
+            pub const AddRef = IBrush_Methods.AddRef;
+            pub const Release = IBrush_Methods.Release;
         };
     }
 
@@ -376,11 +421,17 @@ pub const IRadialGradientBrush = extern struct {
 pub const IStrokeStyle = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -401,11 +452,17 @@ pub const IStrokeStyle = extern struct {
 pub const IGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -430,11 +487,17 @@ pub const IGeometry = extern struct {
 pub const IRectangleGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
         };
     }
 
@@ -447,11 +510,17 @@ pub const IRectangleGeometry = extern struct {
 pub const IRoundedRectangleGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
         };
     }
 
@@ -464,11 +533,17 @@ pub const IRoundedRectangleGeometry = extern struct {
 pub const IEllipseGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
         };
     }
 
@@ -481,11 +556,17 @@ pub const IEllipseGeometry = extern struct {
 pub const IGeometryGroup = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
         };
     }
 
@@ -500,11 +581,17 @@ pub const IGeometryGroup = extern struct {
 pub const ITransformedGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
         };
     }
 
@@ -573,11 +660,25 @@ pub const QUADRATIC_BEZIER_SEGMENT = extern struct {
 pub const ISimplifiedGeometrySink = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const SetFillMode = _Methods.SetFillMode;
+    pub const SetSegmentFlags = _Methods.SetSegmentFlags;
+    pub const BeginFigure = _Methods.BeginFigure;
+    pub const AddLines = _Methods.AddLines;
+    pub const AddBeziers = _Methods.AddBeziers;
+    pub const EndFigure = _Methods.EndFigure;
+    pub const Close = _Methods.Close;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn SetFillMode(self: *T, mode: FILL_MODE) void {
                 @as(*const ISimplifiedGeometrySink.VTable, @ptrCast(self.__v))
@@ -626,11 +727,38 @@ pub const ISimplifiedGeometrySink = extern struct {
 pub const IGeometrySink = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const SetFillMode = _Methods.SetFillMode;
+    pub const SetSegmentFlags = _Methods.SetSegmentFlags;
+    pub const BeginFigure = _Methods.BeginFigure;
+    pub const AddLines = _Methods.AddLines;
+    pub const AddBeziers = _Methods.AddBeziers;
+    pub const EndFigure = _Methods.EndFigure;
+    pub const Close = _Methods.Close;
+
+    pub const AddLine = _Methods.AddLine;
+    pub const AddBezier = _Methods.AddBezier;
+    pub const AddQuadraticBezier = _Methods.AddQuadraticBezier;
+    pub const AddQuadraticBeziers = _Methods.AddQuadraticBeziers;
+    pub const AddArc = _Methods.AddArc;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace ISimplifiedGeometrySink.Methods(T);
+            const ISimplifiedGeometrySink_Methods = ISimplifiedGeometrySink.Methods(T);
+            pub const QueryInterface = ISimplifiedGeometrySink_Methods.QueryInterface;
+            pub const AddRef = ISimplifiedGeometrySink_Methods.AddRef;
+            pub const Release = ISimplifiedGeometrySink_Methods.Release;
+            pub const SetFillMode = ISimplifiedGeometrySink_Methods.SetFillMode;
+            pub const SetSegmentFlags = ISimplifiedGeometrySink_Methods.SetSegmentFlags;
+            pub const BeginFigure = ISimplifiedGeometrySink_Methods.BeginFigure;
+            pub const AddLines = ISimplifiedGeometrySink_Methods.AddLines;
+            pub const AddBeziers = ISimplifiedGeometrySink_Methods.AddBeziers;
+            pub const EndFigure = ISimplifiedGeometrySink_Methods.EndFigure;
+            pub const Close = ISimplifiedGeometrySink_Methods.Close;
 
             pub inline fn AddLine(self: *T, point: POINT_2F) void {
                 @as(*const IGeometrySink.VTable, @ptrCast(self.__v)).AddLine(@as(*IGeometrySink, @ptrCast(self)), point);
@@ -670,11 +798,21 @@ pub const IGeometrySink = extern struct {
 pub const IPathGeometry = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const Open = _Methods.Open;
+    pub const GetSegmentCount = _Methods.GetSegmentCount;
+    pub const GetFigureCount = _Methods.GetFigureCount;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IGeometry.Methods(T);
+            const IGeometry_Methods = IGeometry.Methods(T);
+            pub const QueryInterface = IGeometry_Methods.QueryInterface;
+            pub const AddRef = IGeometry_Methods.AddRef;
+            pub const Release = IGeometry_Methods.Release;
 
             pub inline fn Open(self: *T, sink: *?*IGeometrySink) HRESULT {
                 return @as(*const IPathGeometry.VTable, @ptrCast(self.__v)).Open(@as(*IPathGeometry, @ptrCast(self)), sink);
@@ -734,11 +872,35 @@ pub const TAG = UINT64;
 pub const IRenderTarget = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateSolidColorBrush = _Methods.CreateSolidColorBrush;
+    pub const CreateGradientStopCollection = _Methods.CreateGradientStopCollection;
+    pub const CreateRadialGradientBrush = _Methods.CreateRadialGradientBrush;
+    pub const DrawLine = _Methods.DrawLine;
+    pub const DrawRectangle = _Methods.DrawRectangle;
+    pub const FillRectangle = _Methods.FillRectangle;
+    pub const DrawRoundedRectangle = _Methods.DrawRoundedRectangle;
+    pub const FillRoundedRectangle = _Methods.FillRoundedRectangle;
+    pub const DrawEllipse = _Methods.DrawEllipse;
+    pub const FillEllipse = _Methods.FillEllipse;
+    pub const DrawGeometry = _Methods.DrawGeometry;
+    pub const FillGeometry = _Methods.FillGeometry;
+    pub const DrawBitmap = _Methods.DrawBitmap;
+    pub const DrawText = _Methods.DrawText;
+    pub const SetTransform = _Methods.SetTransform;
+    pub const Clear = _Methods.Clear;
+    pub const BeginDraw = _Methods.BeginDraw;
+    pub const EndDraw = _Methods.EndDraw;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
 
             pub inline fn CreateSolidColorBrush(
                 self: *T,
@@ -1011,11 +1173,23 @@ pub const IRenderTarget = extern struct {
 pub const IFactory = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateRectangleGeometry = _Methods.CreateRectangleGeometry;
+    pub const CreateRoundedRectangleGeometry = _Methods.CreateRoundedRectangleGeometry;
+    pub const CreateEllipseGeometry = _Methods.CreateEllipseGeometry;
+    pub const CreatePathGeometry = _Methods.CreatePathGeometry;
+    pub const CreateStrokeStyle = _Methods.CreateStrokeStyle;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn CreateRectangleGeometry(
                 self: *T,
@@ -1113,11 +1287,17 @@ pub extern "d2d1" fn D2D1CreateFactory(
 pub const IBitmap1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IBitmap.Methods(T);
+            const IBitmap_Methods = IBitmap.Methods(T);
+            pub const QueryInterface = IBitmap_Methods.QueryInterface;
+            pub const AddRef = IBitmap_Methods.AddRef;
+            pub const Release = IBitmap_Methods.Release;
         };
     }
 
@@ -1134,11 +1314,17 @@ pub const IBitmap1 = extern struct {
 pub const IColorContext = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    pub const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -1172,11 +1358,56 @@ pub const BITMAP_PROPERTIES1 = extern struct {
 pub const IDeviceContext = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    pub const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateSolidColorBrush = _Methods.CreateSolidColorBrush;
+    pub const CreateGradientStopCollection = _Methods.CreateGradientStopCollection;
+    pub const CreateRadialGradientBrush = _Methods.CreateRadialGradientBrush;
+    pub const DrawLine = _Methods.DrawLine;
+    pub const DrawRectangle = _Methods.DrawRectangle;
+    pub const FillRectangle = _Methods.FillRectangle;
+    pub const DrawRoundedRectangle = _Methods.DrawRoundedRectangle;
+    pub const FillRoundedRectangle = _Methods.FillRoundedRectangle;
+    pub const DrawEllipse = _Methods.DrawEllipse;
+    pub const FillEllipse = _Methods.FillEllipse;
+    pub const DrawGeometry = _Methods.DrawGeometry;
+    pub const FillGeometry = _Methods.FillGeometry;
+    pub const DrawBitmap = _Methods.DrawBitmap;
+    pub const DrawText = _Methods.DrawText;
+    pub const SetTransform = _Methods.SetTransform;
+    pub const Clear = _Methods.Clear;
+    pub const BeginDraw = _Methods.BeginDraw;
+    pub const EndDraw = _Methods.EndDraw;
+
+    pub const CreateBitmapFromDxgiSurface = _Methods.CreateBitmapFromDxgiSurface;
+    pub const SetTarget = _Methods.SetTarget;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IRenderTarget.Methods(T);
+            pub const IRenderTarget_Methods = IRenderTarget.Methods(T);
+            pub const QueryInterface = IRenderTarget_Methods.QueryInterface;
+            pub const AddRef = IRenderTarget_Methods.AddRef;
+            pub const Release = IRenderTarget_Methods.Release;
+            pub const CreateSolidColorBrush = IRenderTarget_Methods.CreateSolidColorBrush;
+            pub const CreateGradientStopCollection = IRenderTarget_Methods.CreateGradientStopCollection;
+            pub const CreateRadialGradientBrush = IRenderTarget_Methods.CreateRadialGradientBrush;
+            pub const DrawLine = IRenderTarget_Methods.DrawLine;
+            pub const DrawRectangle = IRenderTarget_Methods.DrawRectangle;
+            pub const FillRectangle = IRenderTarget_Methods.FillRectangle;
+            pub const DrawRoundedRectangle = IRenderTarget_Methods.DrawRoundedRectangle;
+            pub const FillRoundedRectangle = IRenderTarget_Methods.FillRoundedRectangle;
+            pub const DrawEllipse = IRenderTarget_Methods.DrawEllipse;
+            pub const FillEllipse = IRenderTarget_Methods.FillEllipse;
+            pub const DrawGeometry = IRenderTarget_Methods.DrawGeometry;
+            pub const FillGeometry = IRenderTarget_Methods.FillGeometry;
+            pub const DrawBitmap = IRenderTarget_Methods.DrawBitmap;
+            pub const DrawText = IRenderTarget_Methods.DrawText;
+            pub const SetTransform = IRenderTarget_Methods.SetTransform;
+            pub const Clear = IRenderTarget_Methods.Clear;
+            pub const BeginDraw = IRenderTarget_Methods.BeginDraw;
+            pub const EndDraw = IRenderTarget_Methods.EndDraw;
 
             pub inline fn CreateBitmapFromDxgiSurface(
                 self: *T,
@@ -1242,11 +1473,27 @@ pub const IDeviceContext = extern struct {
 pub const IFactory1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateRectangleGeometry = _Methods.CreateRectangleGeometry;
+    pub const CreateRoundedRectangleGeometry = _Methods.CreateRoundedRectangleGeometry;
+    pub const CreateEllipseGeometry = _Methods.CreateEllipseGeometry;
+    pub const CreatePathGeometry = _Methods.CreatePathGeometry;
+    pub const CreateStrokeStyle = _Methods.CreateStrokeStyle;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory.Methods(T);
+            const IFactory_Methods = IFactory.Methods(T);
+            pub const QueryInterface = IFactory_Methods.QueryInterface;
+            pub const AddRef = IFactory_Methods.AddRef;
+            pub const Release = IFactory_Methods.Release;
+            pub const CreateRectangleGeometry = IFactory_Methods.CreateRectangleGeometry;
+            pub const CreateRoundedRectangleGeometry = IFactory_Methods.CreateRoundedRectangleGeometry;
+            pub const CreateEllipseGeometry = IFactory_Methods.CreateEllipseGeometry;
+            pub const CreatePathGeometry = IFactory_Methods.CreatePathGeometry;
+            pub const CreateStrokeStyle = IFactory_Methods.CreateStrokeStyle;
         };
     }
 
@@ -1268,11 +1515,17 @@ pub const IFactory1 = extern struct {
 pub const IDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -1289,11 +1542,17 @@ pub const IDevice = extern struct {
 pub const IDeviceContext1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext.Methods(T);
+            const IDeviceContext_Methods = IDeviceContext.Methods(T);
+            pub const QueryInterface = IDeviceContext_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext_Methods.AddRef;
+            pub const Release = IDeviceContext_Methods.Release;
         };
     }
 
@@ -1308,11 +1567,17 @@ pub const IDeviceContext1 = extern struct {
 pub const IFactory2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory1.Methods(T);
+            const IFactory1_Methods = IFactory1.Methods(T);
+            pub const QueryInterface = IFactory1_Methods.QueryInterface;
+            pub const AddRef = IFactory1_Methods.AddRef;
+            pub const Release = IFactory1_Methods.Release;
         };
     }
 
@@ -1325,11 +1590,17 @@ pub const IFactory2 = extern struct {
 pub const IDevice1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice.Methods(T);
+            const IDevice_Methods = IDevice.Methods(T);
+            pub const QueryInterface = IDevice_Methods.QueryInterface;
+            pub const AddRef = IDevice_Methods.AddRef;
+            pub const Release = IDevice_Methods.Release;
         };
     }
 
@@ -1366,11 +1637,26 @@ pub const INK_STYLE_PROPERTIES = extern struct {
 pub const IInk = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const SetStartPoint = _Methods.SetStartPoint;
+    pub const GetStartPoint = _Methods.GetStartPoint;
+    pub const AddSegments = _Methods.AddSegments;
+    pub const RemoveSegmentsAtEnd = _Methods.RemoveSegmentsAtEnd;
+    pub const SetSegments = _Methods.SetSegments;
+    pub const SetSegmentAtEnd = _Methods.SetSegmentAtEnd;
+    pub const GetSegmentCount = _Methods.GetSegmentCount;
+    pub const GetSegments = _Methods.GetSegments;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
 
             pub inline fn SetStartPoint(self: *T, point: *const INK_POINT) void {
                 @as(*const IInk.VTable, @ptrCast(self.__v)).SetStartPoint(@as(*IInk, @ptrCast(self)), point);
@@ -1432,11 +1718,17 @@ pub const IInk = extern struct {
 pub const IInkStyle = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -1452,11 +1744,21 @@ pub const IInkStyle = extern struct {
 pub const IDeviceContext2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateInk = _Methods.CreateInk;
+    pub const CreateInkStyle = _Methods.CreateInkStyle;
+    pub const DrawInk = _Methods.DrawInk;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext1.Methods(T);
+            const IDeviceContext1_Methods = IDeviceContext1.Methods(T);
+            pub const QueryInterface = IDeviceContext1_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext1_Methods.AddRef;
+            pub const Release = IDeviceContext1_Methods.Release;
 
             pub inline fn CreateInk(self: *T, start_point: *const INK_POINT, ink: *?*IInk) HRESULT {
                 return @as(*const IDeviceContext2.VTable, @ptrCast(self.__v))
@@ -1497,11 +1799,23 @@ pub const IDeviceContext2 = extern struct {
 pub const IDeviceContext3 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateInk = _Methods.CreateInk;
+    pub const CreateInkStyle = _Methods.CreateInkStyle;
+    pub const DrawInk = _Methods.DrawInk;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext2.Methods(T);
+            const IDeviceContext2_Methods = IDeviceContext2.Methods(T);
+            pub const QueryInterface = IDeviceContext2_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext2_Methods.AddRef;
+            pub const Release = IDeviceContext2_Methods.Release;
+            pub const CreateInk = IDeviceContext2_Methods.CreateInk;
+            pub const CreateInkStyle = IDeviceContext2_Methods.CreateInkStyle;
+            pub const DrawInk = IDeviceContext2_Methods.DrawInk;
         };
     }
 
@@ -1515,11 +1829,23 @@ pub const IDeviceContext3 = extern struct {
 pub const IDeviceContext4 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateInk = _Methods.CreateInk;
+    pub const CreateInkStyle = _Methods.CreateInkStyle;
+    pub const DrawInk = _Methods.DrawInk;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext3.Methods(T);
+            const IDeviceContext3_Methods = IDeviceContext3.Methods(T);
+            pub const QueryInterface = IDeviceContext3_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext3_Methods.AddRef;
+            pub const Release = IDeviceContext3_Methods.Release;
+            pub const CreateInk = IDeviceContext3_Methods.CreateInk;
+            pub const CreateInkStyle = IDeviceContext3_Methods.CreateInkStyle;
+            pub const DrawInk = IDeviceContext3_Methods.DrawInk;
         };
     }
 
@@ -1538,11 +1864,23 @@ pub const IDeviceContext4 = extern struct {
 pub const IDeviceContext5 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateInk = _Methods.CreateInk;
+    pub const CreateInkStyle = _Methods.CreateInkStyle;
+    pub const DrawInk = _Methods.DrawInk;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext4.Methods(T);
+            const IDeviceContext4_Methods = IDeviceContext4.Methods(T);
+            pub const QueryInterface = IDeviceContext4_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext4_Methods.AddRef;
+            pub const Release = IDeviceContext4_Methods.Release;
+            pub const CreateInk = IDeviceContext4_Methods.CreateInk;
+            pub const CreateInkStyle = IDeviceContext4_Methods.CreateInkStyle;
+            pub const DrawInk = IDeviceContext4_Methods.DrawInk;
         };
     }
 
@@ -1558,11 +1896,23 @@ pub const IDeviceContext5 = extern struct {
 pub const IDeviceContext6 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateInk = _Methods.CreateInk;
+    pub const CreateInkStyle = _Methods.CreateInkStyle;
+    pub const DrawInk = _Methods.DrawInk;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceContext5.Methods(T);
+            const IDeviceContext5_Methods = IDeviceContext5.Methods(T);
+            pub const QueryInterface = IDeviceContext5_Methods.QueryInterface;
+            pub const AddRef = IDeviceContext5_Methods.AddRef;
+            pub const Release = IDeviceContext5_Methods.Release;
+            pub const CreateInk = IDeviceContext5_Methods.CreateInk;
+            pub const CreateInkStyle = IDeviceContext5_Methods.CreateInkStyle;
+            pub const DrawInk = IDeviceContext5_Methods.DrawInk;
         };
     }
 
@@ -1575,11 +1925,17 @@ pub const IDeviceContext6 = extern struct {
 pub const IFactory3 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory2.Methods(T);
+            const IFactory2_Methods = IFactory2.Methods(T);
+            pub const QueryInterface = IFactory2_Methods.QueryInterface;
+            pub const AddRef = IFactory2_Methods.AddRef;
+            pub const Release = IFactory2_Methods.Release;
         };
     }
 
@@ -1592,11 +1948,17 @@ pub const IFactory3 = extern struct {
 pub const IFactory4 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory3.Methods(T);
+            const IFactory3_Methods = IFactory3.Methods(T);
+            pub const QueryInterface = IFactory3_Methods.QueryInterface;
+            pub const AddRef = IFactory3_Methods.AddRef;
+            pub const Release = IFactory3_Methods.Release;
         };
     }
 
@@ -1609,11 +1971,17 @@ pub const IFactory4 = extern struct {
 pub const IFactory5 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory4.Methods(T);
+            const IFactory4_Methods = IFactory4.Methods(T);
+            pub const QueryInterface = IFactory4_Methods.QueryInterface;
+            pub const AddRef = IFactory4_Methods.AddRef;
+            pub const Release = IFactory4_Methods.Release;
         };
     }
 
@@ -1626,11 +1994,17 @@ pub const IFactory5 = extern struct {
 pub const IFactory6 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory5.Methods(T);
+            const IFactory5_Methods = IFactory5.Methods(T);
+            pub const QueryInterface = IFactory5_Methods.QueryInterface;
+            pub const AddRef = IFactory5_Methods.AddRef;
+            pub const Release = IFactory5_Methods.Release;
         };
     }
 
@@ -1643,11 +2017,19 @@ pub const IFactory6 = extern struct {
 pub const IFactory7 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateDevice6 = _Methods.CreateDevice6;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IFactory6.Methods(T);
+            const IFactory6_Methods = IFactory6.Methods(T);
+            pub const QueryInterface = IFactory6_Methods.QueryInterface;
+            pub const AddRef = IFactory6_Methods.AddRef;
+            pub const Release = IFactory6_Methods.Release;
 
             pub inline fn CreateDevice6(self: *T, dxgi_device: *dxgi.IDevice, d2d_device6: *?*IDevice6) HRESULT {
                 return @as(*const IFactory7.VTable, @ptrCast(self.__v))
@@ -1665,11 +2047,17 @@ pub const IFactory7 = extern struct {
 pub const IDevice2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice1.Methods(T);
+            const IDevice1_Methods = IDevice1.Methods(T);
+            pub const QueryInterface = IDevice1_Methods.QueryInterface;
+            pub const AddRef = IDevice1_Methods.AddRef;
+            pub const Release = IDevice1_Methods.Release;
         };
     }
 
@@ -1684,11 +2072,17 @@ pub const IDevice2 = extern struct {
 pub const IDevice3 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice2.Methods(T);
+            const IDevice2_Methods = IDevice2.Methods(T);
+            pub const QueryInterface = IDevice2_Methods.QueryInterface;
+            pub const AddRef = IDevice2_Methods.AddRef;
+            pub const Release = IDevice2_Methods.Release;
         };
     }
 
@@ -1701,11 +2095,17 @@ pub const IDevice3 = extern struct {
 pub const IDevice4 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice3.Methods(T);
+            const IDevice3_Methods = IDevice3.Methods(T);
+            pub const QueryInterface = IDevice3_Methods.QueryInterface;
+            pub const AddRef = IDevice3_Methods.AddRef;
+            pub const Release = IDevice3_Methods.Release;
         };
     }
 
@@ -1720,11 +2120,17 @@ pub const IDevice4 = extern struct {
 pub const IDevice5 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice4.Methods(T);
+            const IDevice4_Methods = IDevice4.Methods(T);
+            pub const QueryInterface = IDevice4_Methods.QueryInterface;
+            pub const AddRef = IDevice4_Methods.AddRef;
+            pub const Release = IDevice4_Methods.Release;
         };
     }
 
@@ -1737,11 +2143,19 @@ pub const IDevice5 = extern struct {
 pub const IDevice6 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateDeviceContext6 = _Methods.CreateDeviceContext6;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice5.Methods(T);
+            const IDevice5_Methods = IDevice5.Methods(T);
+            pub const QueryInterface = IDevice5_Methods.QueryInterface;
+            pub const AddRef = IDevice5_Methods.AddRef;
+            pub const Release = IDevice5_Methods.Release;
 
             pub inline fn CreateDeviceContext6(
                 self: *T,

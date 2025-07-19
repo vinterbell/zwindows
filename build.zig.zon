@@ -2,7 +2,7 @@
     .name = .zwindows,
     .fingerprint = 0x263908d4bb75c6c4,
     .version = "0.2.0-dev",
-    .minimum_zig_version = "0.15.0-dev.666+c04be630d",
+    .minimum_zig_version = "0.15.0-dev.1145+3ae0ba096",
     .paths = .{
         "build.zig",
         "build.zig.zon",

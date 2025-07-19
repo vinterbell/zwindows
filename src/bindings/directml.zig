@@ -340,11 +340,22 @@ pub const IID_IObject = GUID.parse("{c8263aac-9e0c-4a2d-9b8e-007521a3317c}");
 pub const IObject = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetPrivateData(
                 self: *T,
@@ -392,11 +403,27 @@ pub const IID_IDeviceChild = GUID.parse("{27e83142-8165-49e3-974e-2fd66e4cb69d}"
 pub const IDeviceChild = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+
+    pub const GetDevice = _Methods.GetDevice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IObject.Methods(T);
+            const IObject_Methods = IObject.Methods(T);
+            pub const QueryInterface = IObject_Methods.QueryInterface;
+            pub const AddRef = IObject_Methods.AddRef;
+            pub const Release = IObject_Methods.Release;
+            pub const GetPrivateData = IObject_Methods.GetPrivateData;
+            pub const SetPrivateData = IObject_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IObject_Methods.SetPrivateDataInterface;
+            pub const SetName = IObject_Methods.SetName;
 
             pub inline fn GetDevice(self: *T, guid: *const GUID, device: *?*anyopaque) HRESULT {
                 return @as(*const IDeviceChild.VTable, @ptrCast(self.__v))
@@ -415,11 +442,27 @@ pub const IID_IPageable = GUID.parse("{b1ab0825-4542-4a4b-8617-6dde6e8f6201}");
 pub const IPageable = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            pub const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
+            pub const GetPrivateData = IDeviceChild_Methods.GetPrivateData;
+            pub const SetPrivateData = IDeviceChild_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDeviceChild_Methods.SetPrivateDataInterface;
+            pub const SetName = IDeviceChild_Methods.SetName;
+            pub const GetDevice = IDeviceChild_Methods.GetDevice;
         };
     }
 
@@ -432,11 +475,27 @@ pub const IID_IOperator = GUID.parse("{26caae7a-3081-4633-9581-226fbe57695d}");
 pub const IOperator = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            pub const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
+            pub const GetPrivateData = IDeviceChild_Methods.GetPrivateData;
+            pub const SetPrivateData = IDeviceChild_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDeviceChild_Methods.SetPrivateDataInterface;
+            pub const SetName = IDeviceChild_Methods.SetName;
+            pub const GetDevice = IDeviceChild_Methods.GetDevice;
         };
     }
 
@@ -455,11 +514,29 @@ pub const IID_IDispatchable = GUID.parse("{dcb821a8-1039-441e-9f1c-b1759c2f3cec}
 pub const IDispatchable = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
+
+    pub const GetBindingProperties = _Methods.GetBindingProperties;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IPageable.Methods(T);
+            pub const IPageable_Methods = IPageable.Methods(T);
+            pub const QueryInterface = IPageable_Methods.QueryInterface;
+            pub const AddRef = IPageable_Methods.AddRef;
+            pub const Release = IPageable_Methods.Release;
+            pub const GetPrivateData = IPageable_Methods.GetPrivateData;
+            pub const SetPrivateData = IPageable_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IPageable_Methods.SetPrivateDataInterface;
+            pub const SetName = IPageable_Methods.SetName;
+            pub const GetDevice = IPageable_Methods.GetDevice;
 
             pub inline fn GetBindingProperties(self: *T) BINDING_PROPERTIES {
                 var properties: BINDING_PROPERTIES = undefined;
@@ -483,11 +560,27 @@ pub const IID_ICompiledOperator = GUID.parse("{6b15e56a-bf5c-4902-92d8-da3a650af
 pub const ICompiledOperator = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDispatchable.Methods(T);
+            const IDispatchable_Methods = IDispatchable.Methods(T);
+            pub const QueryInterface = IDispatchable_Methods.QueryInterface;
+            pub const AddRef = IDispatchable_Methods.AddRef;
+            pub const Release = IDispatchable_Methods.Release;
+            pub const GetPrivateData = IDispatchable_Methods.GetPrivateData;
+            pub const SetPrivateData = IDispatchable_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDispatchable_Methods.SetPrivateDataInterface;
+            pub const SetName = IDispatchable_Methods.SetName;
+            pub const GetDevice = IDispatchable_Methods.GetDevice;
         };
     }
 
@@ -500,11 +593,29 @@ pub const IID_IOperatorInitializer = GUID.parse("{427c1113-435c-469c-8676-4d5dd0
 pub const IOperatorInitializer = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
+
+    pub const Reset = _Methods.Reset;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDispatchable.Methods(T);
+            const IDispatchable_Methods = IDispatchable.Methods(T);
+            pub const QueryInterface = IDispatchable_Methods.QueryInterface;
+            pub const AddRef = IDispatchable_Methods.AddRef;
+            pub const Release = IDispatchable_Methods.Release;
+            pub const GetPrivateData = IDispatchable_Methods.GetPrivateData;
+            pub const SetPrivateData = IDispatchable_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDispatchable_Methods.SetPrivateDataInterface;
+            pub const SetName = IDispatchable_Methods.SetName;
+            pub const GetDevice = IDispatchable_Methods.GetDevice;
 
             pub inline fn Reset(self: *T, num_operators: UINT, operators: [*]const *ICompiledOperator) HRESULT {
                 return @as(*const IOperatorInitializer.VTable, @ptrCast(self.__v))
@@ -545,11 +656,33 @@ pub const IID_IBindingTable = GUID.parse("{29c687dc-de74-4e3b-ab00-1168f2fc3cfc}
 pub const IBindingTable = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
+
+    pub const BindInputs = _Methods.BindInputs;
+    pub const BindOutputs = _Methods.BindOutputs;
+    pub const BindTemporaryResource = _Methods.BindTemporaryResource;
+    pub const BindPersistentResource = _Methods.BindPersistentResource;
+    pub const Reset = _Methods.Reset;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            pub const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
+            pub const GetPrivateData = IDeviceChild_Methods.GetPrivateData;
+            pub const SetPrivateData = IDeviceChild_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDeviceChild_Methods.SetPrivateDataInterface;
+            pub const SetName = IDeviceChild_Methods.SetName;
+            pub const GetDevice = IDeviceChild_Methods.GetDevice;
 
             pub inline fn BindInputs(self: *T, num: UINT, bindings: ?[*]const BINDING_DESC) void {
                 @as(*const IBindingTable.VTable, @ptrCast(self.__v))
@@ -588,11 +721,29 @@ pub const IID_ICommandRecorder = GUID.parse("{e6857a76-2e3e-4fdd-bff4-5d2ba10fb4
 pub const ICommandRecorder = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const GetDevice = _Methods.GetDevice;
+
+    pub const RecordDispatch = _Methods.RecordDispatch;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            pub const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
+            pub const GetPrivateData = IDeviceChild_Methods.GetPrivateData;
+            pub const SetPrivateData = IDeviceChild_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDeviceChild_Methods.SetPrivateDataInterface;
+            pub const SetName = IDeviceChild_Methods.SetName;
+            pub const GetDevice = IDeviceChild_Methods.GetDevice;
 
             pub inline fn RecordDispatch(
                 self: *T,
@@ -621,11 +772,18 @@ pub const IID_IDebugDevice = GUID.parse("{7d6f3ac9-394a-4ac3-92a7-390cc57a8217}"
 pub const IDebugDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const SetMuteDebugOutput = _Methods.SetMuteDebugOutput;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn SetMuteDebugOutput(self: *T, mute: BOOL) void {
                 @as(*const IDebugDevice.VTable, @ptrCast(self.v))
@@ -644,11 +802,36 @@ pub const IID_IDevice = GUID.parse("{6dbd6437-96fd-423f-a98c-ae5e7c2a573f}");
 pub const IDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+
+    pub const CheckFeatureSupport = _Methods.CheckFeatureSupport;
+    pub const CreateOperator = _Methods.CreateOperator;
+    pub const CompileOperator = _Methods.CompileOperator;
+    pub const CreateOperatorInitializer = _Methods.CreateOperatorInitializer;
+    pub const CreateCommandRecorder = _Methods.CreateCommandRecorder;
+    pub const CreateBindingTable = _Methods.CreateBindingTable;
+    pub const Evict = _Methods.Evict;
+    pub const MakeResident = _Methods.MakeResident;
+    pub const GetDeviceRemovedReason = _Methods.GetDeviceRemovedReason;
+    pub const GetParentDevice = _Methods.GetParentDevice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IObject.Methods(T);
+            const IObject_Methods = IObject.Methods(T);
+            pub const QueryInterface = IObject_Methods.QueryInterface;
+            pub const AddRef = IObject_Methods.AddRef;
+            pub const Release = IObject_Methods.Release;
+            pub const GetPrivateData = IObject_Methods.GetPrivateData;
+            pub const SetPrivateData = IObject_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IObject_Methods.SetPrivateDataInterface;
+            pub const SetName = IObject_Methods.SetName;
 
             pub inline fn CheckFeatureSupport(
                 self: *T,
@@ -842,11 +1025,47 @@ pub const IID_IDevice1 = GUID.parse("{a0884f9a-d2be-4355-aa5d-5901281ad1d2}");
 pub const IDevice1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetPrivateData = _Methods.GetPrivateData;
+    pub const SetPrivateData = _Methods.SetPrivateData;
+    pub const SetPrivateDataInterface = _Methods.SetPrivateDataInterface;
+    pub const SetName = _Methods.SetName;
+    pub const CheckFeatureSupport = _Methods.CheckFeatureSupport;
+    pub const CreateOperator = _Methods.CreateOperator;
+    pub const CompileOperator = _Methods.CompileOperator;
+    pub const CreateOperatorInitializer = _Methods.CreateOperatorInitializer;
+    pub const CreateCommandRecorder = _Methods.CreateCommandRecorder;
+    pub const CreateBindingTable = _Methods.CreateBindingTable;
+    pub const Evict = _Methods.Evict;
+    pub const MakeResident = _Methods.MakeResident;
+    pub const GetDeviceRemovedReason = _Methods.GetDeviceRemovedReason;
+    pub const GetParentDevice = _Methods.GetParentDevice;
+
+    pub const CompileGraph = _Methods.CompileGraph;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice.Methods(T);
+            const IDevice_Methods = IDevice.Methods(T);
+            pub const QueryInterface = IDevice_Methods.QueryInterface;
+            pub const AddRef = IDevice_Methods.AddRef;
+            pub const Release = IDevice_Methods.Release;
+            pub const GetPrivateData = IDevice_Methods.GetPrivateData;
+            pub const SetPrivateData = IDevice_Methods.SetPrivateData;
+            pub const SetPrivateDataInterface = IDevice_Methods.SetPrivateDataInterface;
+            pub const SetName = IDevice_Methods.SetName;
+            pub const CheckFeatureSupport = IDevice_Methods.CheckFeatureSupport;
+            pub const CreateOperator = IDevice_Methods.CreateOperator;
+            pub const CompileOperator = IDevice_Methods.CompileOperator;
+            pub const CreateOperatorInitializer = IDevice_Methods.CreateOperatorInitializer;
+            pub const CreateCommandRecorder = IDevice_Methods.CreateCommandRecorder;
+            pub const CreateBindingTable = IDevice_Methods.CreateBindingTable;
+            pub const Evict = IDevice_Methods.Evict;
+            pub const MakeResident = IDevice_Methods.MakeResident;
+            pub const GetDeviceRemovedReason = IDevice_Methods.GetDeviceRemovedReason;
+            pub const GetParentDevice = IDevice_Methods.GetParentDevice;
 
             pub inline fn CompileGraph(
                 self: *T,

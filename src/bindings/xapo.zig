@@ -65,11 +65,28 @@ pub const IID_IXAPO = GUID.parse("{A410B984-9839-4819-A0BE-2856AE6B3ADB}");
 pub const IXAPO = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetRegistrationProperties = _Methods.GetRegistrationProperties;
+    pub const IsInputFormatSupported = _Methods.IsInputFormatSupported;
+    pub const IsOutputFormatSupported = _Methods.IsOutputFormatSupported;
+    pub const Initialize = _Methods.Initialize;
+    pub const Reset = _Methods.Reset;
+    pub const LockForProcess = _Methods.LockForProcess;
+    pub const UnlockForProcess = _Methods.UnlockForProcess;
+    pub const Process = _Methods.Process;
+    pub const CalcInputFrames = _Methods.CalcInputFrames;
+    pub const CalcOutputFrames = _Methods.CalcOutputFrames;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetRegistrationProperties(self: *T, props: **REGISTRATION_PROPERTIES) HRESULT {
                 return @as(*const IXAPO.VTable, @ptrCast(self.__v))
@@ -196,11 +213,20 @@ pub const IXAPO = extern struct {
 pub const IXAPOParameters = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const SetParameters = _Methods.SetParameters;
+    pub const GetParameters = _Methods.GetParameters;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn SetParameters(self: *T, params: *const anyopaque, size: UINT32) void {
                 @as(*const IXAPOParameters.VTable, @ptrCast(self.__v))

@@ -136,7 +136,7 @@ pub const REVERB_DEFAULT_REVERB_GAIN = 0.0;
 pub const REVERB_DEFAULT_DECAY_TIME = 1.0;
 pub const REVERB_DEFAULT_DENSITY = 100.0;
 pub const REVERB_DEFAULT_ROOM_SIZE = 100.0;
-pub const REVERB_DEFAULT_DISABLE_LATE_FIELD = FALSE;
+pub const REVERB_DEFAULT_DISABLE_LATE_FIELD: windows.BOOL = .FALSE;
 
 pub fn createVolumeMeter(apo: *?*IUnknown, _: UINT32) HRESULT {
     var xaudio2_dll = windows.GetModuleHandleA("xaudio2_9redist.dll");

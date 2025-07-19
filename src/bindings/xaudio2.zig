@@ -187,11 +187,28 @@ pub const DEBUG_CONFIGURATION = extern struct {
 pub const IXAudio2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const RegisterForCallbacks = _Methods.RegisterForCallbacks;
+    pub const UnregisterForCallbacks = _Methods.UnregisterForCallbacks;
+    pub const CreateSourceVoice = _Methods.CreateSourceVoice;
+    pub const CreateSubmixVoice = _Methods.CreateSubmixVoice;
+    pub const CreateMasteringVoice = _Methods.CreateMasteringVoice;
+    pub const StartEngine = _Methods.StartEngine;
+    pub const StopEngine = _Methods.StopEngine;
+    pub const CommitChanges = _Methods.CommitChanges;
+    pub const GetPerformanceData = _Methods.GetPerformanceData;
+    pub const SetDebugConfiguration = _Methods.SetDebugConfiguration;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn RegisterForCallbacks(self: *T, cb: *IEngineCallback) HRESULT {
                 return @as(*const IXAudio2.VTable, @ptrCast(self.__v))
@@ -340,7 +357,24 @@ pub const IXAudio2 = extern struct {
 pub const IVoice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const GetVoiceDetails = _Methods.GetVoiceDetails;
+    pub const SetOutputVoices = _Methods.SetOutputVoices;
+    pub const SetEffectChain = _Methods.SetEffectChain;
+    pub const EnableEffect = _Methods.EnableEffect;
+    pub const DisableEffect = _Methods.DisableEffect;
+    pub const GetEffectState = _Methods.GetEffectState;
+    pub const SetEffectParameters = _Methods.SetEffectParameters;
+    pub const GetEffectParameters = _Methods.GetEffectParameters;
+    pub const SetFilterParameters = _Methods.SetFilterParameters;
+    pub const GetFilterParameters = _Methods.GetFilterParameters;
+    pub const SetOutputFilterParameters = _Methods.SetOutputFilterParameters;
+    pub const GetOutputFilterParameters = _Methods.GetOutputFilterParameters;
+    pub const SetVolume = _Methods.SetVolume;
+    pub const GetVolume = _Methods.GetVolume;
+    pub const SetChannelVolumes = _Methods.SetChannelVolumes;
+    pub const GetChannelVolumes = _Methods.GetChannelVolumes;
+    pub const DestroyVoice = _Methods.DestroyVoice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
@@ -488,11 +522,56 @@ pub const IVoice = extern struct {
 pub const ISourceVoice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const GetVoiceDetails = _Methods.GetVoiceDetails;
+    pub const SetOutputVoices = _Methods.SetOutputVoices;
+    pub const SetEffectChain = _Methods.SetEffectChain;
+    pub const EnableEffect = _Methods.EnableEffect;
+    pub const DisableEffect = _Methods.DisableEffect;
+    pub const GetEffectState = _Methods.GetEffectState;
+    pub const SetEffectParameters = _Methods.SetEffectParameters;
+    pub const GetEffectParameters = _Methods.GetEffectParameters;
+    pub const SetFilterParameters = _Methods.SetFilterParameters;
+    pub const GetFilterParameters = _Methods.GetFilterParameters;
+    pub const SetOutputFilterParameters = _Methods.SetOutputFilterParameters;
+    pub const GetOutputFilterParameters = _Methods.GetOutputFilterParameters;
+    pub const SetVolume = _Methods.SetVolume;
+    pub const GetVolume = _Methods.GetVolume;
+    pub const SetChannelVolumes = _Methods.SetChannelVolumes;
+    pub const GetChannelVolumes = _Methods.GetChannelVolumes;
+    pub const DestroyVoice = _Methods.DestroyVoice;
+
+    pub const Start = _Methods.Start;
+    pub const Stop = _Methods.Stop;
+    pub const SubmitSourceBuffer = _Methods.SubmitSourceBuffer;
+    pub const FlushSourceBuffers = _Methods.FlushSourceBuffers;
+    pub const Discontinuity = _Methods.Discontinuity;
+    pub const ExitLoop = _Methods.ExitLoop;
+    pub const GetState = _Methods.GetState;
+    pub const SetFrequencyRatio = _Methods.SetFrequencyRatio;
+    pub const GetFrequencyRatio = _Methods.GetFrequencyRatio;
+    pub const SetSourceSampleRate = _Methods.SetSourceSampleRate;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IVoice.Methods(T);
+            const IVoice_Methods = IVoice.Methods(T);
+            pub const GetVoiceDetails = IVoice_Methods.GetVoiceDetails;
+            pub const SetOutputVoices = IVoice_Methods.SetOutputVoices;
+            pub const SetEffectChain = IVoice_Methods.SetEffectChain;
+            pub const EnableEffect = IVoice_Methods.EnableEffect;
+            pub const DisableEffect = IVoice_Methods.DisableEffect;
+            pub const GetEffectState = IVoice_Methods.GetEffectState;
+            pub const SetEffectParameters = IVoice_Methods.SetEffectParameters;
+            pub const GetEffectParameters = IVoice_Methods.GetEffectParameters;
+            pub const SetFilterParameters = IVoice_Methods.SetFilterParameters;
+            pub const GetFilterParameters = IVoice_Methods.GetFilterParameters;
+            pub const SetOutputFilterParameters = IVoice_Methods.SetOutputFilterParameters;
+            pub const GetOutputFilterParameters = IVoice_Methods.GetOutputFilterParameters;
+            pub const SetVolume = IVoice_Methods.SetVolume;
+            pub const GetVolume = IVoice_Methods.GetVolume;
+            pub const SetChannelVolumes = IVoice_Methods.SetChannelVolumes;
+            pub const GetChannelVolumes = IVoice_Methods.GetChannelVolumes;
+            pub const DestroyVoice = IVoice_Methods.DestroyVoice;
 
             pub inline fn Start(self: *T, flags: FLAGS, operation_set: UINT32) HRESULT {
                 return @as(*const ISourceVoice.VTable, @ptrCast(self.__v))
@@ -564,11 +643,45 @@ pub const ISourceVoice = extern struct {
 pub const ISubmixVoice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const GetVoiceDetails = _Methods.GetVoiceDetails;
+    pub const SetOutputVoices = _Methods.SetOutputVoices;
+    pub const SetEffectChain = _Methods.SetEffectChain;
+    pub const EnableEffect = _Methods.EnableEffect;
+    pub const DisableEffect = _Methods.DisableEffect;
+    pub const GetEffectState = _Methods.GetEffectState;
+    pub const SetEffectParameters = _Methods.SetEffectParameters;
+    pub const GetEffectParameters = _Methods.GetEffectParameters;
+    pub const SetFilterParameters = _Methods.SetFilterParameters;
+    pub const GetFilterParameters = _Methods.GetFilterParameters;
+    pub const SetOutputFilterParameters = _Methods.SetOutputFilterParameters;
+    pub const GetOutputFilterParameters = _Methods.GetOutputFilterParameters;
+    pub const SetVolume = _Methods.SetVolume;
+    pub const GetVolume = _Methods.GetVolume;
+    pub const SetChannelVolumes = _Methods.SetChannelVolumes;
+    pub const GetChannelVolumes = _Methods.GetChannelVolumes;
+    pub const DestroyVoice = _Methods.DestroyVoice;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IVoice.Methods(T);
+            const IVoice_Methods = IVoice.Methods(T);
+            pub const GetVoiceDetails = IVoice_Methods.GetVoiceDetails;
+            pub const SetOutputVoices = IVoice_Methods.SetOutputVoices;
+            pub const SetEffectChain = IVoice_Methods.SetEffectChain;
+            pub const EnableEffect = IVoice_Methods.EnableEffect;
+            pub const DisableEffect = IVoice_Methods.DisableEffect;
+            pub const GetEffectState = IVoice_Methods.GetEffectState;
+            pub const SetEffectParameters = IVoice_Methods.SetEffectParameters;
+            pub const GetEffectParameters = IVoice_Methods.GetEffectParameters;
+            pub const SetFilterParameters = IVoice_Methods.SetFilterParameters;
+            pub const GetFilterParameters = IVoice_Methods.GetFilterParameters;
+            pub const SetOutputFilterParameters = IVoice_Methods.SetOutputFilterParameters;
+            pub const GetOutputFilterParameters = IVoice_Methods.GetOutputFilterParameters;
+            pub const SetVolume = IVoice_Methods.SetVolume;
+            pub const GetVolume = IVoice_Methods.GetVolume;
+            pub const SetChannelVolumes = IVoice_Methods.SetChannelVolumes;
+            pub const GetChannelVolumes = IVoice_Methods.GetChannelVolumes;
+            pub const DestroyVoice = IVoice_Methods.DestroyVoice;
         };
     }
 
@@ -580,11 +693,47 @@ pub const ISubmixVoice = extern struct {
 pub const IMasteringVoice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const GetVoiceDetails = _Methods.GetVoiceDetails;
+    pub const SetOutputVoices = _Methods.SetOutputVoices;
+    pub const SetEffectChain = _Methods.SetEffectChain;
+    pub const EnableEffect = _Methods.EnableEffect;
+    pub const DisableEffect = _Methods.DisableEffect;
+    pub const GetEffectState = _Methods.GetEffectState;
+    pub const SetEffectParameters = _Methods.SetEffectParameters;
+    pub const GetEffectParameters = _Methods.GetEffectParameters;
+    pub const SetFilterParameters = _Methods.SetFilterParameters;
+    pub const GetFilterParameters = _Methods.GetFilterParameters;
+    pub const SetOutputFilterParameters = _Methods.SetOutputFilterParameters;
+    pub const GetOutputFilterParameters = _Methods.GetOutputFilterParameters;
+    pub const SetVolume = _Methods.SetVolume;
+    pub const GetVolume = _Methods.GetVolume;
+    pub const SetChannelVolumes = _Methods.SetChannelVolumes;
+    pub const GetChannelVolumes = _Methods.GetChannelVolumes;
+    pub const DestroyVoice = _Methods.DestroyVoice;
+
+    pub const GetChannelMask = _Methods.GetChannelMask;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IVoice.Methods(T);
+            const IVoice_Methods = IVoice.Methods(T);
+            pub const GetVoiceDetails = IVoice_Methods.GetVoiceDetails;
+            pub const SetOutputVoices = IVoice_Methods.SetOutputVoices;
+            pub const SetEffectChain = IVoice_Methods.SetEffectChain;
+            pub const EnableEffect = IVoice_Methods.EnableEffect;
+            pub const DisableEffect = IVoice_Methods.DisableEffect;
+            pub const GetEffectState = IVoice_Methods.GetEffectState;
+            pub const SetEffectParameters = IVoice_Methods.SetEffectParameters;
+            pub const GetEffectParameters = IVoice_Methods.GetEffectParameters;
+            pub const SetFilterParameters = IVoice_Methods.SetFilterParameters;
+            pub const GetFilterParameters = IVoice_Methods.GetFilterParameters;
+            pub const SetOutputFilterParameters = IVoice_Methods.SetOutputFilterParameters;
+            pub const GetOutputFilterParameters = IVoice_Methods.GetOutputFilterParameters;
+            pub const SetVolume = IVoice_Methods.SetVolume;
+            pub const GetVolume = IVoice_Methods.GetVolume;
+            pub const SetChannelVolumes = IVoice_Methods.SetChannelVolumes;
+            pub const GetChannelVolumes = IVoice_Methods.GetChannelVolumes;
+            pub const DestroyVoice = IVoice_Methods.DestroyVoice;
 
             pub inline fn GetChannelMask(self: *T, channel_mask: *DWORD) HRESULT {
                 return @as(*const IMasteringVoice.VTable, @ptrCast(self.__v))
@@ -602,7 +751,10 @@ pub const IMasteringVoice = extern struct {
 pub const IEngineCallback = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const OnProcessingPassStart = _Methods.OnProcessingPassStart;
+    pub const OnProcessingPassEnd = _Methods.OnProcessingPassEnd;
+    pub const OnCriticalError = _Methods.OnCriticalError;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
@@ -638,7 +790,14 @@ pub const IEngineCallback = extern struct {
 pub const IVoiceCallback = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const OnVoiceProcessingPassStart = _Methods.OnVoiceProcessingPassStart;
+    pub const OnVoiceProcessingPassEnd = _Methods.OnVoiceProcessingPassEnd;
+    pub const OnStreamEnd = _Methods.OnStreamEnd;
+    pub const OnBufferStart = _Methods.OnBufferStart;
+    pub const OnBufferEnd = _Methods.OnBufferEnd;
+    pub const OnLoopEnd = _Methods.OnLoopEnd;
+    pub const OnVoiceError = _Methods.OnVoiceError;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {

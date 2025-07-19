@@ -1,9 +1,11 @@
 comptime {
+    @setEvalBranchQuota(100000);
     std.testing.refAllDeclsRecursive(@This());
 }
 
 pub const windows = @import("bindings/windows.zig");
 pub const dwrite = @import("bindings/dwrite.zig");
+pub const dxc = @import("bindings/dxc.zig");
 pub const dxgi = @import("bindings/dxgi.zig");
 pub const d3d11 = @import("bindings/d3d11.zig");
 pub const d3d11d = @import("bindings/d3d11sdklayers.zig");

@@ -18,11 +18,21 @@ pub const RESOURCE_FLAGS = extern struct {
 pub const IDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateWrappedResource = _Methods.CreateWrappedResource;
+    pub const ReleaseWrappedResources = _Methods.ReleaseWrappedResources;
+    pub const AcquireWrappedResources = _Methods.AcquireWrappedResources;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn CreateWrappedResource(
                 self: *T,
@@ -81,11 +91,23 @@ pub const IDevice = extern struct {
 pub const IDevice1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateWrappedResource = _Methods.CreateWrappedResource;
+    pub const ReleaseWrappedResources = _Methods.ReleaseWrappedResources;
+    pub const AcquireWrappedResources = _Methods.AcquireWrappedResources;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice.Methods(T);
+            const IDevice_Methods = IDevice.Methods(T);
+            pub const QueryInterface = IDevice_Methods.QueryInterface;
+            pub const AddRef = IDevice_Methods.AddRef;
+            pub const Release = IDevice_Methods.Release;
+            pub const CreateWrappedResource = IDevice_Methods.CreateWrappedResource;
+            pub const ReleaseWrappedResources = IDevice_Methods.ReleaseWrappedResources;
+            pub const AcquireWrappedResources = IDevice_Methods.AcquireWrappedResources;
         };
     }
 
@@ -98,11 +120,23 @@ pub const IDevice1 = extern struct {
 pub const IDevice2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const CreateWrappedResource = _Methods.CreateWrappedResource;
+    pub const ReleaseWrappedResources = _Methods.ReleaseWrappedResources;
+    pub const AcquireWrappedResources = _Methods.AcquireWrappedResources;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDevice1.Methods(T);
+            const IDevice1_Methods = IDevice1.Methods(T);
+            pub const QueryInterface = IDevice1_Methods.QueryInterface;
+            pub const AddRef = IDevice1_Methods.AddRef;
+            pub const Release = IDevice1_Methods.Release;
+            pub const CreateWrappedResource = IDevice1_Methods.CreateWrappedResource;
+            pub const ReleaseWrappedResources = IDevice1_Methods.ReleaseWrappedResources;
+            pub const AcquireWrappedResources = IDevice1_Methods.AcquireWrappedResources;
         };
     }
 

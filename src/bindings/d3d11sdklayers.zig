@@ -1395,11 +1395,25 @@ pub const IID_IInfoQueue = GUID.parse("{6543dbb6-1b48-42f5-ab82-e97ec74326f6}");
 pub const IInfoQueue = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetMessage = _Methods.GetMessage;
+    pub const GetNumStoredMessages = _Methods.GetNumStoredMessages;
+    pub const AddStorageFilterEntries = _Methods.AddStorageFilterEntries;
+    pub const PushEmptyStorageFilter = _Methods.PushEmptyStorageFilter;
+    pub const PushStorageFilter = _Methods.PushStorageFilter;
+    pub const PopStorageFilter = _Methods.PopStorageFilter;
+    pub const SetMuteDebugOutput = _Methods.SetMuteDebugOutput;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetMessage(
                 self: *T,

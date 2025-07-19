@@ -14,11 +14,18 @@ pub const GPU_BASED_VALIDATION_FLAGS = packed struct(UINT) {
 pub const IDebug = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const EnableDebugLayer = _Methods.EnableDebugLayer;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn EnableDebugLayer(self: *T) void {
                 @as(*const IDebug.VTable, @ptrCast(self.__v)).EnableDebugLayer(@as(*IDebug, @ptrCast(self)));
@@ -35,11 +42,20 @@ pub const IDebug = extern struct {
 pub const IDebug1 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const EnableDebugLayer = _Methods.EnableDebugLayer;
+    pub const SetEnableGPUBasedValidation = _Methods.SetEnableGPUBasedValidation;
+    pub const SetEnableSynchronizedCommandQueueValidation = _Methods.SetEnableSynchronizedCommandQueueValidation;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn EnableDebugLayer(self: *T) void {
                 @as(*const IDebug1.VTable, @ptrCast(self.__v)).EnableDebugLayer(@as(*IDebug1, @ptrCast(self)));
@@ -66,11 +82,18 @@ pub const IDebug1 = extern struct {
 pub const IDebug2 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const SetGPUBasedValidationFlags = _Methods.SetGPUBasedValidationFlags;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn SetGPUBasedValidationFlags(self: *T, flags: GPU_BASED_VALIDATION_FLAGS) void {
                 @as(*const IDebug2.VTable, @ptrCast(self.__v))
@@ -88,11 +111,23 @@ pub const IDebug2 = extern struct {
 pub const IDebug3 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const EnableDebugLayer = _Methods.EnableDebugLayer;
+
+    pub const SetEnableGPUBasedValidation = _Methods.SetEnableGPUBasedValidation;
+    pub const SetEnableSynchronizedCommandQueueValidation = _Methods.SetEnableSynchronizedCommandQueueValidation;
+    pub const SetGPUBasedValidationFlags = _Methods.SetGPUBasedValidationFlags;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDebug.Methods(T);
+            pub const IDebug_Methods = IDebug.Methods(T);
+            pub const QueryInterface = IDebug_Methods.QueryInterface;
+            pub const AddRef = IDebug_Methods.AddRef;
+            pub const Release = IDebug_Methods.Release;
+            pub const EnableDebugLayer = IDebug_Methods.EnableDebugLayer;
 
             pub inline fn SetEnableGPUBasedValidation(self: *T, enable: BOOL) void {
                 @as(*const IDebug3.VTable, @ptrCast(self.__v))
@@ -120,11 +155,27 @@ pub const IDebug3 = extern struct {
 pub const IDebug4 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const EnableDebugLayer = _Methods.EnableDebugLayer;
+    pub const SetEnableGPUBasedValidation = _Methods.SetEnableGPUBasedValidation;
+    pub const SetEnableSynchronizedCommandQueueValidation = _Methods.SetEnableSynchronizedCommandQueueValidation;
+    pub const SetGPUBasedValidationFlags = _Methods.SetGPUBasedValidationFlags;
+
+    pub const DisableDebugLayer = _Methods.DisableDebugLayer;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDebug3.Methods(T);
+            pub const IDebug3_Methods = IDebug3.Methods(T);
+            pub const QueryInterface = IDebug3_Methods.QueryInterface;
+            pub const AddRef = IDebug3_Methods.AddRef;
+            pub const Release = IDebug3_Methods.Release;
+            pub const EnableDebugLayer = IDebug3_Methods.EnableDebugLayer;
+            pub const SetEnableGPUBasedValidation = IDebug3_Methods.SetEnableGPUBasedValidation;
+            pub const SetEnableSynchronizedCommandQueueValidation = IDebug3_Methods.SetEnableSynchronizedCommandQueueValidation;
+            pub const SetGPUBasedValidationFlags = IDebug3_Methods.SetGPUBasedValidationFlags;
 
             pub inline fn DisableDebugLayer(self: *T) void {
                 @as(*const IDebug4.VTable, @ptrCast(self.__v)).DisableDebugLayer(@as(*IDebug4, @ptrCast(self)));
@@ -141,11 +192,32 @@ pub const IDebug4 = extern struct {
 pub const IDebug5 = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const EnableDebugLayer = _Methods.EnableDebugLayer;
+    pub const SetEnableGPUBasedValidation = _Methods.SetEnableGPUBasedValidation;
+    pub const SetEnableSynchronizedCommandQueueValidation = _Methods.SetEnableSynchronizedCommandQueueValidation;
+    pub const SetGPUBasedValidationFlags = _Methods.SetGPUBasedValidationFlags;
+
+    pub const DisableDebugLayer = _Methods.DisableDebugLayer;
+    pub const SetEnableAutoName = _Methods.SetEnableAutoName;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDebug4.Methods(T);
+            pub const IDebug4_Methods = IDebug4.Methods(T);
+            pub const QueryInterface = IDebug4_Methods.QueryInterface;
+            pub const AddRef = IDebug4_Methods.AddRef;
+            pub const Release = IDebug4_Methods.Release;
+            pub const EnableDebugLayer = IDebug4_Methods.EnableDebugLayer;
+            pub const SetEnableGPUBasedValidation = IDebug4_Methods.SetEnableGPUBasedValidation;
+            pub const SetEnableSynchronizedCommandQueueValidation = IDebug4_Methods.SetEnableSynchronizedCommandQueueValidation;
+            pub const SetGPUBasedValidationFlags = IDebug4_Methods.SetGPUBasedValidationFlags;
+
+            pub inline fn DisableDebugLayer(self: *T) void {
+                @as(*const IDebug4.VTable, @ptrCast(self.__v)).DisableDebugLayer(@as(*IDebug4, @ptrCast(self)));
+            }
 
             pub inline fn SetEnableAutoName(self: *T, enable: BOOL) void {
                 @as(*const IDebug5.VTable, @ptrCast(self.__v)).SetEnableAutoName(@as(*IDebug5, @ptrCast(self)), enable);
@@ -204,11 +276,22 @@ pub const INFO_QUEUE_FILTER = extern struct {
 pub const IInfoQueue = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const AddStorageFilterEntries = _Methods.AddStorageFilterEntries;
+    pub const PushStorageFilter = _Methods.PushStorageFilter;
+    pub const PopStorageFilter = _Methods.PopStorageFilter;
+    pub const SetMuteDebugOutput = _Methods.SetMuteDebugOutput;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            pub const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn AddStorageFilterEntries(self: *T, filter: *INFO_QUEUE_FILTER) HRESULT {
                 return @as(*const IInfoQueue.VTable, @ptrCast(self.__v))

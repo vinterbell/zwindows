@@ -56,11 +56,23 @@ pub extern "mfreadwrite" fn MFCreateSourceReaderFromURL(
 pub const IAttributes = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetUINT32 = _Methods.GetUINT32;
+    pub const GetGUID = _Methods.GetGUID;
+    pub const SetUINT32 = _Methods.SetUINT32;
+    pub const SetGUID = _Methods.SetGUID;
+    pub const SetUnknown = _Methods.SetUnknown;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetUINT32(self: *T, guid: *const GUID, value: *UINT32) HRESULT {
                 return @as(*const IAttributes.VTable, @ptrCast(self.__v)).GetUINT32(
@@ -126,11 +138,32 @@ pub const IAttributes = extern struct {
 pub const IMediaEvent = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetUINT32 = _Methods.GetUINT32;
+    pub const GetGUID = _Methods.GetGUID;
+    pub const SetUINT32 = _Methods.SetUINT32;
+    pub const SetGUID = _Methods.SetGUID;
+    pub const SetUnknown = _Methods.SetUnknown;
+
+    pub const GetType = _Methods.GetType;
+    pub const GetExtendedType = _Methods.GetExtendedType;
+    pub const GetStatus = _Methods.GetStatus;
+    pub const GetValue = _Methods.GetValue;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IAttributes.Methods(T);
+            const IAttributes_Methods = IAttributes.Methods(T);
+            pub const QueryInterface = IAttributes_Methods.QueryInterface;
+            pub const AddRef = IAttributes_Methods.AddRef;
+            pub const Release = IAttributes_Methods.Release;
+            pub const GetUINT32 = IAttributes_Methods.GetUINT32;
+            pub const GetGUID = IAttributes_Methods.GetGUID;
+            pub const SetUINT32 = IAttributes_Methods.SetUINT32;
+            pub const SetGUID = IAttributes_Methods.SetGUID;
+            pub const SetUnknown = IAttributes_Methods.SetUnknown;
 
             pub inline fn GetType(self: *T, met: *MediaEventType) HRESULT {
                 return @as(*const IMediaEvent.VTable, @ptrCast(self.__v))
@@ -163,11 +196,23 @@ pub const IMediaEvent = extern struct {
 pub const ISourceReader = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const GetNativeMediaType = _Methods.GetNativeMediaType;
+    pub const GetCurrentMediaType = _Methods.GetCurrentMediaType;
+    pub const SetCurrentMediaType = _Methods.SetCurrentMediaType;
+    pub const ReadSample = _Methods.ReadSample;
+    pub const SetCurrentPosition = _Methods.SetCurrentPosition;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn GetNativeMediaType(
                 self: *T,
@@ -251,11 +296,27 @@ pub const ISourceReader = extern struct {
 pub const IMediaType = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetUINT32 = _Methods.GetUINT32;
+    pub const GetGUID = _Methods.GetGUID;
+    pub const SetUINT32 = _Methods.SetUINT32;
+    pub const SetGUID = _Methods.SetGUID;
+    pub const SetUnknown = _Methods.SetUnknown;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IAttributes.Methods(T);
+            const IAttributes_Methods = IAttributes.Methods(T);
+            pub const QueryInterface = IAttributes_Methods.QueryInterface;
+            pub const AddRef = IAttributes_Methods.AddRef;
+            pub const Release = IAttributes_Methods.Release;
+            pub const GetUINT32 = IAttributes_Methods.GetUINT32;
+            pub const GetGUID = IAttributes_Methods.GetGUID;
+            pub const SetUINT32 = IAttributes_Methods.SetUINT32;
+            pub const SetGUID = IAttributes_Methods.SetGUID;
+            pub const SetUnknown = IAttributes_Methods.SetUnknown;
         };
     }
 
@@ -272,11 +333,30 @@ pub const IMediaType = extern struct {
 pub const ISample = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+    pub const GetUINT32 = _Methods.GetUINT32;
+    pub const GetGUID = _Methods.GetGUID;
+    pub const SetUINT32 = _Methods.SetUINT32;
+    pub const SetGUID = _Methods.SetGUID;
+    pub const SetUnknown = _Methods.SetUnknown;
+
+    pub const ConvertToContiguousBuffer = _Methods.ConvertToContiguousBuffer;
+    pub const GetBufferByIndex = _Methods.GetBufferByIndex;
 
     fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IAttributes.Methods(T);
+            const IAttributes_Methods = IAttributes.Methods(T);
+            pub const QueryInterface = IAttributes_Methods.QueryInterface;
+            pub const AddRef = IAttributes_Methods.AddRef;
+            pub const Release = IAttributes_Methods.Release;
+            pub const GetUINT32 = IAttributes_Methods.GetUINT32;
+            pub const GetGUID = IAttributes_Methods.GetGUID;
+            pub const SetUINT32 = IAttributes_Methods.SetUINT32;
+            pub const SetGUID = IAttributes_Methods.SetGUID;
+            pub const SetUnknown = IAttributes_Methods.SetUnknown;
 
             pub inline fn ConvertToContiguousBuffer(self: *T, buffer: **IMediaBuffer) HRESULT {
                 return @as(*const ISample.VTable, @ptrCast(self.__v))
@@ -311,11 +391,21 @@ pub const ISample = extern struct {
 pub const IMediaBuffer = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const Lock = _Methods.Lock;
+    pub const Unlock = _Methods.Unlock;
+    pub const GetCurrentLength = _Methods.GetCurrentLength;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn Lock(self: *T, ptr: *[*]BYTE, max_len: ?*DWORD, current_len: ?*DWORD) HRESULT {
                 return @as(*const IMediaBuffer.VTable, @ptrCast(self.__v))
@@ -347,11 +437,21 @@ pub const IID_ISourceReaderCallback = GUID.parse("{deec8d99-fa1d-4d82-84c2-2c896
 pub const ISourceReaderCallback = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const OnReadSample = _Methods.OnReadSample;
+    pub const OnFlush = _Methods.OnFlush;
+    pub const OnEvent = _Methods.OnEvent;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn OnReadSample(
                 self: *T,

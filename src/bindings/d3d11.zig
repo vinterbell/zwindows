@@ -515,11 +515,17 @@ pub const IID_IDeviceChild = GUID.parse("{1841e5c8-16b0-489b-bcc8-44cfb0d5deae}"
 pub const IDeviceChild = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
         };
     }
 
@@ -536,11 +542,17 @@ pub const IID_IClassLinkage = GUID.parse("{ddf57cba-9543-46e4-a12b-f207a0fe7fed}
 pub const IClassLinkage = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -555,11 +567,17 @@ pub const IID_IClassInstance = GUID.parse("{a6cd7faa-b0b7-4a2f-9436-8662a65797cb
 pub const IClassInstance = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -576,11 +594,17 @@ pub const IID_IResource = GUID.parse("{dc8e63f3-d12b-4952-b47b-5e45026a862d}");
 pub const IResource = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -596,11 +620,40 @@ pub const IID_IDeviceContext = GUID.parse("{c0bfa96c-e089-44fb-8eaf-26f8796190da
 pub const IDeviceContext = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const VSSetConstantBuffers = _Methods.VSSetConstantBuffers;
+    pub const PSSetShaderResources = _Methods.PSSetShaderResources;
+    pub const PSSetShader = _Methods.PSSetShader;
+    pub const PSSetSamplers = _Methods.PSSetSamplers;
+    pub const VSSetShader = _Methods.VSSetShader;
+    pub const Draw = _Methods.Draw;
+    pub const DrawIndexed = _Methods.DrawIndexed;
+    pub const Map = _Methods.Map;
+    pub const Unmap = _Methods.Unmap;
+    pub const PSSetConstantBuffers = _Methods.PSSetConstantBuffers;
+    pub const IASetInputLayout = _Methods.IASetInputLayout;
+    pub const IASetVertexBuffers = _Methods.IASetVertexBuffers;
+    pub const IASetIndexBuffer = _Methods.IASetIndexBuffer;
+    pub const IASetPrimitiveTopology = _Methods.IASetPrimitiveTopology;
+    pub const RSSetViewports = _Methods.RSSetViewports;
+    pub const RSSetScissorRects = _Methods.RSSetScissorRects;
+    pub const OMSetRenderTargets = _Methods.OMSetRenderTargets;
+    pub const OMSetBlendState = _Methods.OMSetBlendState;
+    pub const RSSetState = _Methods.RSSetState;
+    pub const ClearRenderTargetView = _Methods.ClearRenderTargetView;
+    pub const Flush = _Methods.Flush;
+    pub const UpdateSubresource = _Methods.UpdateSubresource;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
 
             pub inline fn VSSetConstantBuffers(
                 self: *T,
@@ -1032,11 +1085,28 @@ pub const IID_IDevice = GUID.parse("{db6f6ddb-ac77-4e88-8253-819df9bbf140}");
 pub const IDevice = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
+
+    pub const CreateBuffer = _Methods.CreateBuffer;
+    pub const CreateTexture2D = _Methods.CreateTexture2D;
+    pub const CreateShaderResourceView = _Methods.CreateShaderResourceView;
+    pub const CreateRenderTargetView = _Methods.CreateRenderTargetView;
+    pub const CreateInputLayout = _Methods.CreateInputLayout;
+    pub const CreateVertexShader = _Methods.CreateVertexShader;
+    pub const CreatePixelShader = _Methods.CreatePixelShader;
+    pub const CreateBlendState = _Methods.CreateBlendState;
+    pub const CreateRasterizerState = _Methods.CreateRasterizerState;
+    pub const CreateSamplerState = _Methods.CreateSamplerState;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IUnknown.Methods(T);
+            const IUnknown_Methods = IUnknown.Methods(T);
+            pub const QueryInterface = IUnknown_Methods.QueryInterface;
+            pub const AddRef = IUnknown_Methods.AddRef;
+            pub const Release = IUnknown_Methods.Release;
 
             pub inline fn CreateBuffer(
                 self: *T,
@@ -1271,11 +1341,17 @@ pub const IID_IView = GUID.parse("{839d1216-bb2e-412b-b7f4-a9dbebe08ed1}");
 pub const IView = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1289,11 +1365,17 @@ pub const IID_IRenderTargetView = GUID.parse("{dfdba067-0b8d-4865-875b-d7b4516cc
 pub const IRenderTargetView = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IView.Methods(T);
+            const IView_Methods = IView.Methods(T);
+            pub const QueryInterface = IView_Methods.QueryInterface;
+            pub const AddRef = IView_Methods.AddRef;
+            pub const Release = IView_Methods.Release;
         };
     }
 
@@ -1307,11 +1389,17 @@ pub const IID_IDepthStencilView = GUID.parse("{9fdac92a-1876-48c3-afad-25b94f84a
 pub const IDepthStencilView = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IView.Methods(T);
+            const IView_Methods = IView.Methods(T);
+            pub const QueryInterface = IView_Methods.QueryInterface;
+            pub const AddRef = IView_Methods.AddRef;
+            pub const Release = IView_Methods.Release;
         };
     }
 
@@ -1325,11 +1413,17 @@ pub const IID_IShaderResourceView = GUID.parse("{b0e06fe0-8192-4e1a-b1ca-36d7414
 pub const IShaderResourceView = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IView.Methods(T);
+            const IView_Methods = IView.Methods(T);
+            pub const QueryInterface = IView_Methods.QueryInterface;
+            pub const AddRef = IView_Methods.AddRef;
+            pub const Release = IView_Methods.Release;
         };
     }
 
@@ -1343,11 +1437,17 @@ pub const IID_IVertexShader = GUID.parse("{3b301d64-d678-4289-8897-22f8928b72f3}
 pub const IVertexShader = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1361,11 +1461,17 @@ pub const IID_IPixelShader = GUID.parse("{ea82e40d-51dc-4f33-93d4-db7c9125ae8c}"
 pub const IPixelShader = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1379,11 +1485,17 @@ pub const IID_IInputLayout = GUID.parse("{e4819ddc-4cf0-4025-bd26-5de82a3e07b7}"
 pub const IInputLayout = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1397,11 +1509,17 @@ pub const IID_IRasterizerState = GUID.parse("{9bb4ab81-ab1a-4d8f-b506-fc04200b6e
 pub const IRasterizerState = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1415,11 +1533,17 @@ pub const IID_BlendState = GUID.parse("{75b68faa-347d-4159-8f45-a0640f01cd9a}");
 pub const IBlendState = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1433,11 +1557,17 @@ pub const IID_SamplerState = GUID.parse("{da6fea51-564c-4487-9810-f0d0f9b4e3a5}"
 pub const ISamplerState = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IDeviceChild.Methods(T);
+            const IDeviceChild_Methods = IDeviceChild.Methods(T);
+            pub const QueryInterface = IDeviceChild_Methods.QueryInterface;
+            pub const AddRef = IDeviceChild_Methods.AddRef;
+            pub const Release = IDeviceChild_Methods.Release;
         };
     }
 
@@ -1451,11 +1581,17 @@ pub const IID_IBuffer = GUID.parse("{48570b85-d1ee-4fcd-a250-eb350722b037}");
 pub const IBuffer = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
@@ -1469,11 +1605,17 @@ pub const IID_ITexture2D = GUID.parse("{6f15aaf2-d208-4e89-9ab4-489535d34f9c}");
 pub const ITexture2D = extern struct {
     __v: *const VTable,
 
-    pub usingnamespace Methods(@This());
+    const _Methods = Methods(@This());
+    pub const QueryInterface = _Methods.QueryInterface;
+    pub const AddRef = _Methods.AddRef;
+    pub const Release = _Methods.Release;
 
     pub fn Methods(comptime T: type) type {
         return extern struct {
-            pub usingnamespace IResource.Methods(T);
+            const IResource_Methods = IResource.Methods(T);
+            pub const QueryInterface = IResource_Methods.QueryInterface;
+            pub const AddRef = IResource_Methods.AddRef;
+            pub const Release = IResource_Methods.Release;
         };
     }
 
